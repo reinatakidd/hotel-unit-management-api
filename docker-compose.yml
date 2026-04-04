@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    container_name: unit-api
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: host.docker.internal
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ""
+      DB_NAME: bobobox-db
