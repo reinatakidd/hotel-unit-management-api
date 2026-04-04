@@ -98,6 +98,18 @@ func UpdateUnitStatusHandler(c *gin.Context) {
 		return
 	}
 
+	// Validate status value
+	if body.Status != models.StatusAvailable &&
+		body.Status != models.StatusOccupied &&
+		body.Status != models.StatusCleaning &&
+		body.Status != models.StatusMaintenance {
+
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "invalid status value",
+		})
+	return
+}
+
 	err = repository.UpdateUnitStatus(id, body.Status)
 
 	if err != nil {

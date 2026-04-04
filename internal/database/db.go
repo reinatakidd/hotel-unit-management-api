@@ -10,7 +10,7 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	dsn := "root:@tcp(localhost:3306)/bobobox-db"
+	dsn := "root:@tcp(localhost:3306)/bobobox-db?parseTime=true"
 
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
