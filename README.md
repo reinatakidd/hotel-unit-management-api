@@ -50,16 +50,15 @@ USE `bobobox-db`;
 CREATE TABLE IF NOT EXISTS `units` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(255) NOT NULL,
+  `status` VARCHAR(50) NOT NULL,
   `type` VARCHAR(50) NOT NULL,
-  `status` VARCHAR(50) DEFAULT 'Available',
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `lastUpdated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Insert sample data
-INSERT INTO `units` (`name`, `type`, `status`) VALUES
-('Capsule Unit A1', 'capsule', 'Available'),
-('Cabin Unit B1', 'cabin', 'Available');
+INSERT INTO `units` (`name`, `status`, `type`) VALUES
+('Capsule Unit A1', 'Available', 'capsule'),
+('Cabin Unit B1', 'Available', 'cabin');
 ```
 
 ### 3. Run the API
