@@ -1,4 +1,4 @@
-# Unit API
+# Hotel Unit Management API
 
 A Go REST API for managing units with MySQL database integration using Gin framework.
 
