@@ -107,8 +107,30 @@ func UpdateUnitStatusHandler(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "invalid status value",
 		})
-	return
+		return
 }
+
+	unit, err := repository.GetUnitByID(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	if unit == nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "Unit not found",
+		})
+		return
+	}
+
+	// Occupied to Available must go via "Cleaning In Progress" or "Maintenance Needed"
+	if unit.Status == models.StatusOccupied && body.Status == models.StatusAvailable {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "cannot change unit status directly from Occupied to Available.",
+		})
+		return
+	}
 
 	err = repository.UpdateUnitStatus(id, body.Status)
 
