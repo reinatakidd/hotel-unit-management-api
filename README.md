@@ -83,12 +83,12 @@ curl http://localhost:8080/api/units/1
 # Create a new unit
 curl -X POST http://localhost:8080/api/units \
   -H "Content-Type: application/json" \
-  -d '{"name":"Unit 1","status":"active"}'
+  -d '{"name":"Unit 1","type":"cabin","status":"Available"}'
 
 # Update unit status
 curl -X PUT http://localhost:8080/api/units/1 \
   -H "Content-Type: application/json" \
-  -d '{"status":"inactive"}'
+  -d '{"status":"Occupied"}'
 ```
 
 ---
